@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <table>
+        <head>
+            <meta charset="utf-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <title></title>
+            <meta name="description" content="">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+        </head>
+        <body>
+            <table> 
+                <tr>
+                    <td>ID:</td>
+                    <td>{{ todo.id }}</td>
+                </tr>
+                <tr>
+                    <td>Todo:</td>
+                    <td>{{ todo.text }}</td>
+                </tr>
+                <tr>
+                    <td>Description:</td>
+                    <td>{{ todo.description }}</td>
+                </tr>
+                <tr>
+                    <td>Date Added:</td>
+                    <td>{{ todo.created_at.strftime('%Y-%m-%d') }}</td>
+                </tr>
+
+            </table>
+        </body>
+    </table>
+    <a href="/">Home</a>
+</html>

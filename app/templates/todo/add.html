@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <table>
+        <head>
+            <meta charset="utf-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <title></title>
+            <meta name="description" content="">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+        </head>
+        <body>
+            <form action='/todo/add' method='POST'>
+                <table> 
+                    <tr>
+                        <td>Todo:</td>
+                        <td>
+                            <input
+                                type='text'
+                                name='text'
+                            />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Description:</td>
+                        <td>
+                            <textarea
+                                name='description'
+                            >
+                            </textarea>
+                        </td>
+                    </tr>
+                </table>
+                <button type='submit'>Submit</button>
+            </form>
+        </body>
+    </table>
+    <a href="/">Home</a>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    </head>
+    <body>
+        <table>
+            <thead>
+                <tr>
+                    <th>Todo</th>
+                    <th>Date Added</th>
+                    <th></th>
+            </thead>
+            <tbody>
+                {% for todo in todos %}
+                    <tr>
+                        <td>{{todo.text}}</td>
+                        <td>{{todo.created_at.strftime('%Y-%m-%d')}}</td>
+                        <td>
+                            <a href="todo/{{todo.id}}">view</a>
+                            <a href="todo/update/{{todo.id}}">update</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <a href="/todo/add">Add A Todo</a>
+        
+    </body>
+</html>
