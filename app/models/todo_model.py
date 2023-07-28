@@ -66,3 +66,19 @@ class Todo:
         """
         # first save query to a variable and look at it with the debugger
         return cls(connectToMySQL(cls.dB).query_db(query, { 'id': id })[0])
+    
+    @classmethod
+    def create(cls, data):
+
+        query ="""
+            INSERT INTO
+
+                todos
+
+            (text, description)
+
+            VALUES
+            (%(text)s, %(description)s)
+        """
+
+        return connectToMySQL(cls.dB).query_db(query, data)

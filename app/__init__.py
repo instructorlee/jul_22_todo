@@ -3,3 +3,5 @@ app = Flask(__name__)
 
 
 app.secret_key = "password1234"
+
+dog= "super hero"
