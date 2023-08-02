@@ -36,6 +36,14 @@
                 </table>
                 <button type="submit">Submit</button>
             </form>
+            <div>
+                <h3>Tasks</h3>
+                <ol>
+                    {% for task in todo.tasks %}
+                         <li>{{ task.description}}</li>
+                    {% endfor %}
+                </ol>
+            </div>
         </body>
     </table>
     <a href="/">Home</a>

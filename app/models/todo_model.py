@@ -1,4 +1,5 @@
 from app.config.mysqlconnection import connectToMySQL
+from app.models.task_model import TaskModel
 
 class Todo:
 
@@ -11,6 +12,8 @@ class Todo:
         self.description = data['description']
         self.created_at = data['created_at']
         self.updated_at = data['updated_at']
+
+        self.tasks = []
     
     @classmethod
     def get_all(cls):
@@ -55,17 +58,36 @@ class Todo:
     def get_by_id(cls, id):
         
         query = """
-            SELECT 
+                SELECT 
                 * 
             FROM 
                 todos
+                
+			LEFT JOIN tasks ON tasks.todo_id = todos.id
 
             WHERE 
-                id=%(id)s
+                todos.id=%(id)s
                 ;
         """
         # first save query to a variable and look at it with the debugger
-        return cls(connectToMySQL(cls.dB).query_db(query, { 'id': id })[0])
+        results = connectToMySQL(cls.dB).query_db(query, { 'id': id })
+
+        if results:
+            todo = cls(results[0])
+
+            for result in results:
+
+                task = TaskModel({
+                        "id": result['tasks.id'],
+                        "description": result['tasks.description']
+                    })
+
+                print(task)
+                todo.tasks.append(task)
+
+            return todo
+
+        return None
     
     @classmethod
     def create(cls, data):
